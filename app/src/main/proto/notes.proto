@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+option java_package = "com.servall.notes";
+option java_multiple_files = true;
+
+message Notes {
+  repeated NoteMessage notes = 1;
+}
+
+message NoteMessage {
+  string id = 1;
+  string date = 2;
+  string note = 3;
+  string title = 4;
+}
+
+message Response {
+  bool result = 1;
+}
+
+message NoteToDelete {
+  string id = 1;
+}
+
+service NotesService {
+  //Unary
+  rpc SaveNote(NoteMessage) returns (Response);
+
+  //Server Streaming
+  rpc GetNotes(google.protobuf.Empty) returns (stream Notes);
+
+  //Client Streaming
+  rpc ModifyNote(stream NoteMessage) returns (Response);
+
+  //Bidirectional Streaming
+  rpc CollaborativeModification(stream NoteMessage) returns (stream NoteMessage);
+}
+
