@@ -25,10 +25,16 @@ message NoteToDelete {
 }
 
 service NotesService {
-
-  rpc GetNotes(google.protobuf.Empty) returns (stream Notes);
+  //Unary
   rpc SaveNote(NoteMessage) returns (Response);
-  rpc DeleteNote(NoteToDelete) returns (Response);
-  rpc UpdateNote(NoteMessage) returns (Response);
+
+  //Server Streaming
+  rpc GetNotes(google.protobuf.Empty) returns (stream Notes);
+
+  //Client Streaming
+  rpc ModifyNote(stream NoteMessage) returns (Response);
+
+  //Bidirectional Streaming
+  rpc CollaborativeModification(stream NoteMessage) returns (stream NoteMessage);
 }
 
