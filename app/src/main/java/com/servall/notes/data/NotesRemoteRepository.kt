@@ -1,9 +1,6 @@
 package com.servall.notes.data
 
 import com.google.protobuf.Empty
-import com.servall.notes.NoteMessage
-import com.servall.notes.NotesServiceGrpcKt
-import com.servall.notes.Response
 import com.servall.notes.entities.Note
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
