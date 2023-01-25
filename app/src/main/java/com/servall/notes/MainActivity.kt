@@ -29,6 +29,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.servall.notes.entities.Note
 import com.servall.notes.ui.BottomSheetAddNote
+import com.servall.notes.ui.NotesPreview
 import com.servall.notes.ui.NotesUiState
 import com.servall.notes.ui.NotesViewModel
 import com.servall.notes.ui.theme.NotesTheme
@@ -49,7 +50,7 @@ class MainActivity : ComponentActivity() {
 
                     Notes(notesUiState)
                     BottomSheetAddNote { title, note ->
-                        viewModel.saveNote(title, note)
+                        //TODO viewModel.saveNote(title, note)
                     }
                 }
             }
@@ -94,47 +95,7 @@ fun Notes(modifier: Modifier, notes: List<Note>) {
 @Composable
 fun NotePreview() {
     NotesTheme {
-        Notes(
-            Modifier,
-            listOf(
-                Note(
-                    id = "1",
-                    date = "2023-01-23",
-                    note = "This is an example of note added and propagated",
-                    title = "Hello Note1!"
-                ),
-                Note(
-                    id = "2",
-                    date = "2023-01-23",
-                    note = "This is an example",
-                    title = "Hello Note2!"
-                ),
-                Note(
-                    id = "3",
-                    date = "2023-01-23",
-                    note = "This is an example of note added and propagated his is an example of note added and propagated",
-                    title = "Hello Note3!"
-                ),
-                Note(
-                    id = "4",
-                    date = "2023-01-23",
-                    note = "This is",
-                    title = "Hello Note3!"
-                ),
-                Note(
-                    id = "5",
-                    date = "2023-01-23",
-                    note = "This is an example of note added and propagated his is an example of note added and propagated",
-                    title = "Hello Note3!"
-                ),
-                Note(
-                    id = "6",
-                    date = "2023-01-23",
-                    note = "This is an example of note added and propagated",
-                    title = "Hello Note1!"
-                ),
-            )
-        )
+        NotesPreview()
     }
 }
 

@@ -17,33 +17,6 @@ class NotesViewModel(
     val notesState: StateFlow<NotesUiState>
         get() = _notesState
 
-    init {
-        viewModelScope.launch {
-            notesRemoteRepository.getNotesStream()
-                .catch { error ->
-                    _notesState.value = NotesUiState.Error(
-                        error.message ?: "An error happened trying to get the list of notes"
-                    )
-                }
-                .collect { notes ->
-                    _notesState.value = NotesUiState.Data(notes)
-                }
-        }
-    }
-
-    fun saveNote(title: String, note: String) {
-        if (title.isEmpty() && note.isEmpty()) return
-        viewModelScope.launch {
-            try {
-                notesRemoteRepository.saveNote(title, note)
-            } catch (exception: Exception) {
-                _notesState.value = NotesUiState.Error(
-                    exception.message ?: "An error happened trying to get the list of notes"
-                )
-            }
-        }
-    }
-
 }
 
 sealed class NotesUiState {
